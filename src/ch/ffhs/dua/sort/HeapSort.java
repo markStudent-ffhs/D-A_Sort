@@ -62,19 +62,20 @@ public class HeapSort
 	static void sink(int[] array, int start, int end, int index)
 	{
 		
-		int left = start + 2 * index ;
-        int right = start + 2 * index + 1;
-        int max = start + index;
-        if (left <= end && array[left] > array[index]) {
+		System.out.println("Index "+ index);
+		int left = 2 * index ;
+        int right = 2 * index + 1;
+        int max = index;
+        if (left <= end && array[start + left] > array[start + index]) {
             max = left;
         }
-        if (right <= end && array[right] > array[max]) {        
+        if (right <= end && array[start + right] > array[start + max]) {        
             max = right;
         }
  
         if (max != index) {
-        	System.out.println(index + " " + max);
-            swap(array, index, max);
+        	System.out.println("swap " +index + " " + max);
+            swap(array, start + index, max);
             sink(array, start, end, max);
         }		
 	}
