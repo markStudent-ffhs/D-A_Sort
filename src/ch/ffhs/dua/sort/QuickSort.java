@@ -1,6 +1,7 @@
 package ch.ffhs.dua.sort;
 
 import java.util.concurrent.ThreadLocalRandom;
+import ch.ffhs.dua.sort.InsertSort;
 
 public class QuickSort 
 {
@@ -11,6 +12,9 @@ public class QuickSort
 	 */
 	public static void sort(int[] array)
 	{
+		if (array == null || array.length == 0){
+            return;
+        }
 		sort(array, 0, array.length -1);
 	}
 	
@@ -22,11 +26,6 @@ public class QuickSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-//		if(start < end) {
-//			
-//			sort(array, start, t -1);
-//			sort(array, t + 1, end);
-//		}
 		
 		int i = partition(array, start, end, findPivot(array, start, end));
 		if(start < i - 1) {
@@ -53,7 +52,10 @@ public class QuickSort
 	 */
 	public static void sortPlus(int[] array)
 	{
-		// TODO
+		if (array == null || array.length == 0){
+            return;
+        }
+		sortPlus(array, 0, array.length -1);
 	}
 
 	/**
@@ -67,7 +69,11 @@ public class QuickSort
 	 */
 	public static void sortPlus(int[] array, int start, int end)
 	{
-		// TODO
+		if(end - start < THRESHOLD) {
+			InsertSort:sort(array, start, end);
+		} else {
+			sort(array, start, end);
+		}
 	}
 
 	/**
@@ -83,7 +89,6 @@ public class QuickSort
 	 */
 	static int partition(int[] array, int start, int end, int piv)
 	{
-		// TODO Verwenden Sie diese Mehode für Quicksort
 		int i = start;
 		int j = end;
 		
@@ -101,17 +106,6 @@ public class QuickSort
 		}
 		
 		return i;
-//		int i = start - 1;
-//		for(int j = start; j <= end - 1; j++) {
-//			if(array[j] <= array[piv]) {
-//				i++;
-//				swap(array, i, j);
-//			}
-//		}
-//		
-//		swap(array, i + 1, end);
-//		return i + 1;
-	
 	}
 	
 	/**
@@ -138,7 +132,6 @@ public class QuickSort
 	 */
 	static int findPivot(int[] array, int start, int end)
 	{
-		// TODO
 		return ThreadLocalRandom.current().nextInt(start, end + 1);
 	}
 }

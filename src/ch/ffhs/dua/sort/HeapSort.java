@@ -2,6 +2,8 @@ package ch.ffhs.dua.sort;
 
 public class HeapSort 
 {
+	
+	private static int LENGTH;
 	/**
 	 * Sortiert ein Array mit Heapsort.
 	 * @param array
@@ -19,7 +21,13 @@ public class HeapSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		// TODO
+		makeHeap(array, 0 ,0);        
+        for (int i = LENGTH; i > 0; i--)
+        {
+            swap(array,0, i);
+            LENGTH = LENGTH - 1;
+            sink(array, 0, 0, 0);
+        }
 	}
 	
 	/**
@@ -32,7 +40,11 @@ public class HeapSort
 	 */
 	public static void makeHeap(int[] array, int start, int end)
 	{
-		// TODO
+		System.out.println("length" + array.length);
+		LENGTH = end - start;
+        for (int i = LENGTH/2; i >= 0; i--) {
+            sink(array, start, end, i);
+        }
 	}
 	
 	/**
@@ -49,7 +61,22 @@ public class HeapSort
 	 */
 	static void sink(int[] array, int start, int end, int index)
 	{
-		// TODO	(Implementieren Sie diese Methode, wenn Sie sie für die Sort-Methoden brauchen.		
+		
+		int left = start + 2 * index ;
+        int right = start + 2 * index + 1;
+        int max = start + index;
+        if (left <= end && array[left] > array[index]) {
+            max = left;
+        }
+        if (right <= end && array[right] > array[max]) {        
+            max = right;
+        }
+ 
+        if (max != index) {
+        	System.out.println(index + " " + max);
+            swap(array, index, max);
+            sink(array, start, end, max);
+        }		
 	}
 	
 	/**
@@ -90,5 +117,17 @@ public class HeapSort
 		return leftChild(parentIndex, offset) + 1;
 	}
 
+	/**
+	 * Hilfsmethode zum Vertauschen zweier Array-Elemente
+	 * @param array
+	 * @param a
+	 * @param b
+	 */
+	static void swap(int[] array, int a, int b)
+	{
+		int tmp = array[a];
+		array[a] = array[b];
+		array[b] = tmp;
+	}
 
 }

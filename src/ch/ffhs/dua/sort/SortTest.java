@@ -21,16 +21,16 @@ public class SortTest
 	public void init()
 	{
 		arrays = new ArrayList<>();
-		arrays.add(new int[] { });
-		arrays.add(new int[] {1});
-		arrays.add(new int[] {2, 1});
-		arrays.add(new int[] {1, 1, 2, 2, 3});
-		//arrays.add(new int[] {1, 1, 2, 2, 1});
-		arrays.add(new int[] {2, 1});
-		arrays.add(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
-		arrays.add(new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1});
-		arrays.add(new int[] {10, 3, 5, 3, 6, 3, 2, 8, 7, 2, 2});
-		arrays.add(new int[10]);
+//		arrays.add(new int[] { });
+//		arrays.add(new int[] {1});
+//		arrays.add(new int[] {2, 1});
+//		arrays.add(new int[] {1, 1, 2, 2, 3});
+		arrays.add(new int[] {1, 1, 2, 2, 1});
+//		arrays.add(new int[] {2, 1});
+//		arrays.add(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
+//		arrays.add(new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1});
+//		arrays.add(new int[] {10, 3, 5, 3, 6, 3, 2, 8, 7, 2, 2});
+//		arrays.add(new int[10]);
 	}
 	
 	
@@ -51,18 +51,18 @@ public class SortTest
 	}
 
 	
-	
+//	
 //	@Test
 //	public void testInsertSort()
 //	{
 //		testSort(InsertSort::sort);
 //	}
 //	
-	@Test
-	public void testQuickSort()
-	{
-		testSort(QuickSort::sort);
-	}
+//	@Test
+//	public void testQuickSort()
+//	{
+//		testSort(QuickSort::sort);
+//	}
 //	
 //	@Test
 //	public void testQuickSortPlus()
@@ -70,7 +70,7 @@ public class SortTest
 //		int oldThr = QuickSort.THRESHOLD;
 //		try
 //		{
-//			QuickSort.THRESHOLD = 4;
+//			QuickSort.THRESHOLD = 5;
 //			testSort(QuickSort::sortPlus);
 //		}
 //		finally
@@ -78,10 +78,10 @@ public class SortTest
 //			QuickSort.THRESHOLD = oldThr;
 //		}
 //	}
-//	
-//	/**
-//	 * Tests für log2 Methode
-//	 */
+	
+	/**
+	 * Tests für log2 Methode
+	 */
 //	@Test
 //	public void testLog2()
 //	{
@@ -95,33 +95,33 @@ public class SortTest
 //		assertSame(3, IntroSort.log2(9));
 //		assertSame(0, IntroSort.log2(0));
 //	}
-//	
-//	/**
-//	 * Test makeHeap Methode
-//	 */
-//	@Test 
-//	public void testHeap()
-//	{
-//		for (int[] array : arrays)
-//		{
-//			int[] arrayC = array.clone();
-//			HeapSort.makeHeap(array, 0, array.length - 1);
-//			assertTrue(isHeap(array));
-//			Arrays.sort(array);
-//			Arrays.sort(arrayC);
-//			assertArrayEquals(arrayC, array);
-//		}
-//		
-//		int[] array;
-//		array = new int[] {1,2,3,4,5,6,7};
-//		HeapSort.makeHeap(array, 0, array.length - 1);
-//		assertTrue(isHeap(array));
-//		
-//		array = new int[] {1,2,3,4,5,6,7};
-//		HeapSort.makeHeap(array, 1, array.length - 2);
-//		assertTrue(isHeap(array, 1, array.length-2));
-//		assertSame(1, array[0]);
-//		assertSame(7, array[6]);
+////	
+	/**
+	 * Test makeHeap Methode
+	 */
+	@Test 
+	public void testHeap()
+	{
+		for (int[] array : arrays)
+		{
+			int[] arrayC = array.clone();
+			HeapSort.makeHeap(array, 0, array.length - 1);
+			assertTrue(isHeap(array));
+			Arrays.sort(array);
+			Arrays.sort(arrayC);
+			assertArrayEquals(arrayC, array);
+		}
+		
+		int[] array;
+		array = new int[] {1,2,3,4,5,6,7};
+		HeapSort.makeHeap(array, 0, array.length - 1);
+		assertTrue(isHeap(array));
+		
+		array = new int[] {1,2,3,4,5,6,7};
+		HeapSort.makeHeap(array, 1, array.length - 2);
+		assertTrue(isHeap(array, 1, array.length - 2));
+		assertSame(1, array[0]);
+		assertSame(7, array[6]);
 //		
 //		array = new int[] {1,2,3,4,5,6,7, 8};
 //		HeapSort.makeHeap(array, 0, array.length - 1);
@@ -133,33 +133,33 @@ public class SortTest
 //		assertTrue(isHeap(array, 1, array.length-2));
 //		assertSame(1, array[0]);
 //		assertSame(8, array[7]);
-//	}
-//	
-//	/**
-//	 * Hilfsmethode; testet, ob ein Array ein Heap ist.
-//	 * @param array
-//	 * @return
-//	 */
-//	static boolean isHeap(int[] array)
-//	{
-//		return isHeap(array, 0, array.length - 1);
-//	}
-//	
-//	/**
-//	 * Hilfsmethode; testet, ob ein Teilstück eines Arrays ein Heap ist.
-//	 * @param array
-//	 * @return
-//	 */
-//	static boolean isHeap(int[] array, int start, int end)
-//	{
-//		int offset = start - 1;
-//		int length = end - start + 1;
-//		for (int index = length;  index > 1; index --)
-//		{
-//			if (array[offset + index] > array[offset + index / 2]) return false;
-//		}
-//		return true;
-//	}
+	}
+	
+	/**
+	 * Hilfsmethode; testet, ob ein Array ein Heap ist.
+	 * @param array
+	 * @return
+	 */
+	static boolean isHeap(int[] array)
+	{
+		return isHeap(array, 0, array.length - 1);
+	}
+	
+	/**
+	 * Hilfsmethode; testet, ob ein Teilstück eines Arrays ein Heap ist.
+	 * @param array
+	 * @return
+	 */
+	static boolean isHeap(int[] array, int start, int end)
+	{
+		int offset = start - 1;
+		int length = end - start + 1;
+		for (int index = length;  index > 1; index --)
+		{
+			if (array[offset + index] > array[offset + index / 2]) return false;
+		}
+		return true;
+	}
 //	
 //	@Test
 //	public void testRemoveHeapRoot()
