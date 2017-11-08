@@ -21,12 +21,12 @@ public class HeapSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		makeHeap(array, 0 ,0);        
+		makeHeap(array, start ,end);        
         for (int i = LENGTH; i > 0; i--)
         {
             swap(array,0, i);
             LENGTH = LENGTH - 1;
-            sink(array, 0, 0, 0);
+            sink(array, start, end, 0);
         }
 	}
 	
@@ -38,14 +38,53 @@ public class HeapSort
 	 *              liegen dann an den Position start+1 und start+2.
 	 * @param end   Index des letzten Elementes des Stücks, aus dem ein Heap erzeugt werden sollte.
 	 */
-	public static void makeHeap(int[] array, int start, int end)
+	public static void makeHeap1(int[] array, int start, int end)
 	{
-		System.out.println("length" + array.length);
-		LENGTH = end - start;
-        for (int i = LENGTH/2; i >= 0; i--) {
+		System.out.println("length " + array.length);
+		//LENGTH = end - start + 1;
+        for (int i = array.length/2; i >= 0; i--) {
             sink(array, start, end, i);
         }
+        for (int i = 0; i < array.length; i++) {
+        	System.out.println(array[i]);
+        }
 	}
+	
+	public static void makeHeap(int array[], int start, int end) {
+		int n = array.length;
+		for (int i = n / 2 - 1; i >= 0; i--)
+            heapify(array, n, i);
+		
+		for (int i = 0; i < array.length; i++) {
+        	System.out.println(array[i]);
+        }
+	}
+	
+	public static void heapify(int arr[], int n, int i)
+    {
+        int smallest = i;  // Initialize largest as root
+        int l = 2*i + 1;  // left = 2*i + 1
+        int r = 2*i + 2;  // right = 2*i + 2
+ 
+        // If left child is larger than root
+        if (l < n && arr[l] < arr[smallest])
+            smallest = l;
+ 
+        // If right child is larger than largest so far
+        if (r < n && arr[r] < arr[smallest])
+            smallest = r;
+ 
+        // If largest is not root
+        if (smallest != i)
+        {
+            int swap = arr[i];
+            arr[i] = arr[smallest];
+            arr[smallest] = swap;
+ 
+            // Recursively heapify the affected sub-tree
+            heapify(arr, n, smallest);
+        }
+    }
 	
 	/**
 	 * Hilfsmethode für Heapsort:
@@ -62,22 +101,43 @@ public class HeapSort
 	static void sink(int[] array, int start, int end, int index)
 	{
 		
-		System.out.println("Index "+ index);
-		int left = 2 * index ;
-        int right = 2 * index + 1;
-        int max = index;
-        if (left <= end && array[start + left] > array[start + index]) {
-            max = left;
-        }
-        if (right <= end && array[start + right] > array[start + max]) {        
-            max = right;
-        }
+		int largest = index;  // Initialize largest as root
+        int left = 2 * index + 1;  // left = 2*i + 1
+        int right = 2 * index + 2;  // right = 2*i + 2
  
-        if (max != index) {
-        	System.out.println("swap " +index + " " + max);
-            swap(array, start + index, max);
-            sink(array, start, end, max);
-        }		
+        // If left child is larger than root
+        if (left < end && array[left] > array[largest])
+            largest = left;
+ 
+        // If right child is larger than largest so far
+        if (right < end && array[right] > array[largest])
+            largest = right;
+ 
+        // If largest is not root
+        if (largest != index) {
+            int swap = array[index];
+            array[index] = array[largest];
+            array[largest] = swap;
+ 
+            // Recursively heapify the affected sub-tree
+            sink(array, start, end, largest);
+        }
+//		System.out.println("Index "+ index);
+//		int left = 2 * index ;
+//        int right = 2 * index + 1;
+//        int max = index;
+//        if (start + left <= end && array[start + left] > array[start + index]) {
+//            max = left;
+//        }
+//        if (start + right <= end && array[start + right] > array[start + max]) {        
+//            max = right;
+//        }
+// 
+//        if (max != index) {
+//        	System.out.println("swap " +index + " " + max);
+//            swap(array, start + index, max);
+//            sink(array, start, end, max);
+//        }		
 	}
 	
 	/**
