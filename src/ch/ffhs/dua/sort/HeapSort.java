@@ -38,19 +38,18 @@ public class HeapSort
 	 *              liegen dann an den Position start+1 und start+2.
 	 * @param end   Index des letzten Elementes des Stücks, aus dem ein Heap erzeugt werden sollte.
 	 */
-	public static void makeHeap1(int[] array, int start, int end)
+	public static void makeHeap(int[] array, int start, int end)
 	{
-		System.out.println("length " + array.length);
-		//LENGTH = end - start + 1;
-        for (int i = array.length/2; i >= 0; i--) {
-            sink(array, start, end, i);
-        }
-        for (int i = 0; i < array.length; i++) {
+		int n = end - start;
+		for (int i = n / 2 - 1; i >= 0; i--)
+            sink(array, start, n, i);
+		
+		for (int i = 0; i < array.length; i++) {
         	System.out.println(array[i]);
         }
 	}
 	
-	public static void makeHeap(int array[], int start, int end) {
+	public static void makeHeap2(int array[], int start, int end) {
 		int n = array.length;
 		for (int i = n / 2 - 1; i >= 0; i--)
             heapify(array, n, i);
@@ -100,45 +99,29 @@ public class HeapSort
 	 */
 	static void sink(int[] array, int start, int end, int index)
 	{
-		
-		int largest = index;  // Initialize largest as root
-        int left = 2 * index + 1;  // left = 2*i + 1
-        int right = 2 * index + 2;  // right = 2*i + 2
- 
-        // If left child is larger than root
-        if (left < end && array[left] > array[largest])
-            largest = left;
- 
-        // If right child is larger than largest so far
-        if (right < end && array[right] > array[largest])
-            largest = right;
- 
-        // If largest is not root
-        if (largest != index) {
-            int swap = array[index];
-            array[index] = array[largest];
-            array[largest] = swap;
- 
-            // Recursively heapify the affected sub-tree
-            sink(array, start, end, largest);
-        }
-//		System.out.println("Index "+ index);
-//		int left = 2 * index ;
-//        int right = 2 * index + 1;
-//        int max = index;
-//        if (start + left <= end && array[start + left] > array[start + index]) {
-//            max = left;
-//        }
-//        if (start + right <= end && array[start + right] > array[start + max]) {        
-//            max = right;
-//        }
-// 
-//        if (max != index) {
-//        	System.out.println("swap " +index + " " + max);
-//            swap(array, start + index, max);
-//            sink(array, start, end, max);
-//        }		
-	}
+		   int smallest = index;  // Initialize largest as root
+	        int l = 2*index + 1;  // left = 2*i + 1
+	        int r = 2*index + 2;  // right = 2*i + 2
+	 
+	        // If left child is larger than root
+	        if (l < end && array[l] < array[smallest])
+	            smallest = l;
+	 
+	        // If right child is larger than largest so far
+	        if (r < end && array[r] < array[smallest])
+	            smallest = r;
+	 
+	        // If largest is not root
+	        if (smallest != index)
+	        {
+	            int swap = array[index];
+	            array[index] = array[smallest];
+	            array[smallest] = swap;
+	 
+	            // Recursively heapify the affected sub-tree
+	            sink(array, start, end, smallest);
+	        }
+	    }
 	
 	/**
 	 * Entfernt das Wurzelelement eines Heaps, baut den Heap um,
