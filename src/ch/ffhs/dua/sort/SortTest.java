@@ -102,21 +102,21 @@ public class SortTest
 	@Test 
 	public void testHeap()
 	{
-		for (int[] array : arrays)
-		{
-			int[] arrayC = array.clone();
-			HeapSort.makeHeap(array, 0, array.length - 1);
-			assertTrue(isHeap(array));
-			Arrays.sort(array);
-			Arrays.sort(arrayC);
-			assertArrayEquals(arrayC, array);
-		}
-		
+//		for (int[] array : arrays)
+//		{
+//			int[] arrayC = array.clone();
+//			HeapSort.makeHeap(array, 0, array.length - 1);
+//			assertTrue(isHeap(array));
+//			Arrays.sort(array);
+//			Arrays.sort(arrayC);
+//			assertArrayEquals(arrayC, array);
+//		}
+//		
 		int[] array;
-		array = new int[] {1,2,3,4,5,6,7};
-		HeapSort.makeHeap(array, 0, array.length - 1);
-		assertTrue(isHeap(array));
-		
+//		array = new int[] {1,2,3,4,5,6,7};
+//		HeapSort.makeHeap(array, 0, array.length - 1);
+//		assertTrue(isHeap(array));
+//		
 		array = new int[] {1,2,3,4,5,6,7};
 		HeapSort.makeHeap(array, 1, array.length - 2);
 		assertTrue(isHeap(array, 1, array.length - 2));

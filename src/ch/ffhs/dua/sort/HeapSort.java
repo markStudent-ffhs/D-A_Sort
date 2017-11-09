@@ -42,9 +42,13 @@ public class HeapSort
 	{
 		int n = end - start + 1;
 		System.out.println("länge "+ n);
-		for (int i = n / 2 - 1; i >= 0; i--)
+		System.out.println("start "+ start);
+		System.out.println("end "+ end);
+		for (int i = n / 2 - 1; i >= 0; i--) {
+			System.out.println("index "+ i);
             sink(array, start, n, i);
-		
+		}
+            
 		String intString = "";
 		for (int i = 0; i < array.length; i++) {
         	intString += " " + array[i];
@@ -107,9 +111,10 @@ public class HeapSort
 	 */
 	static void sink(int[] array, int start, int end, int index)
 	{
-		   int smallest = start + index;  // Initialize largest as root
-	        int l = 2*index + 1 + start;  // left = 2*i + 1
-	        int r = 2*index + 2 + start;  // right = 2*i + 2
+		    int smallest = start + index;  // Initialize largest as root
+	        int l = 2 * index + 1 + start;  // left = 2*i + 1
+	        int r = 2 * index + 2 + start;  // right = 2*i + 2
+	        System.out.println("small " + smallest);
 	 
 	        // If left child is larger than root
 	        if (l < end && array[l] > array[smallest])
