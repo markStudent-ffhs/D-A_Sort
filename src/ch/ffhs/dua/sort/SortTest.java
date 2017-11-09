@@ -102,31 +102,30 @@ public class SortTest
 	@Test 
 	public void testHeap()
 	{
-//		for (int[] array : arrays)
-//		{
-//			int[] arrayC = array.clone();
-//			HeapSort.makeHeap(array, 0, array.length - 1);
-//			assertTrue(isHeap(array));
-//			Arrays.sort(array);
-//			Arrays.sort(arrayC);
-//			assertArrayEquals(arrayC, array);
-//		}
+		for (int[] array : arrays)
+		{
+			int[] arrayC = array.clone();
+			HeapSort.makeHeap(array, 0, array.length - 1);
+			assertTrue(isHeap(array));
+			Arrays.sort(array);
+			Arrays.sort(arrayC);
+			assertArrayEquals(arrayC, array);
+		}
 		
 		int[] array;
 		array = new int[] {1,2,3,4,5,6,7};
 		HeapSort.makeHeap(array, 0, array.length - 1);
 		assertTrue(isHeap(array));
-//		
-//		array = new int[] {1,2,3,4,5,6,7};
-//		HeapSort.makeHeap(array, 1, array.length - 2);
-//		assertTrue(isHeap(array, 1, array.length - 2));
-//		assertSame(1, array[0]);
-//		assertSame(7, array[6]);
 		
+		array = new int[] {1,2,3,4,5,6,7};
+		HeapSort.makeHeap(array, 1, array.length - 2);
+		assertTrue(isHeap(array, 1, array.length - 2));
+		assertSame(1, array[0]);
+		assertSame(7, array[6]);
+//		
 //		array = new int[] {1,2,3,4,5,6,7, 8};
 //		HeapSort.makeHeap(array, 0, array.length - 1);
 //		assertTrue(isHeap(array));
-//		
 //		
 //		array = new int[] {1,2,3,4,5,6,7, 8};
 //		HeapSort.makeHeap(array, 1, array.length - 2);
@@ -156,7 +155,8 @@ public class SortTest
 		int length = end - start + 1;
 		for (int index = length;  index > 1; index --)
 		{
-			if (array[offset + index] < array[offset + index / 2]) return false;
+			System.out.println(array[offset + index] + " > " + array[offset + index / 2]);
+			if (array[offset + index] > array[offset + index / 2]) return false;
 		}
 		return true;
 	}

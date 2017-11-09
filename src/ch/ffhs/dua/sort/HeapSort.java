@@ -40,13 +40,17 @@ public class HeapSort
 	 */
 	public static void makeHeap(int[] array, int start, int end)
 	{
-		int n = end - start;
+		int n = end - start + 1;
+		System.out.println("länge "+ n);
 		for (int i = n / 2 - 1; i >= 0; i--)
             sink(array, start, n, i);
 		
+		String intString = "";
 		for (int i = 0; i < array.length; i++) {
-        	System.out.println(array[i]);
+        	intString += " " + array[i];
         }
+		
+		System.out.println(intString);
 	}
 	
 	public static void makeHeap2(int array[], int start, int end) {
@@ -54,9 +58,13 @@ public class HeapSort
 		for (int i = n / 2 - 1; i >= 0; i--)
             heapify(array, n, i);
 		
+		String intString = "";
 		for (int i = 0; i < array.length; i++) {
-        	System.out.println(array[i]);
+        	//System.out.println(array[i]);
+        	intString += " " + array[i];
         }
+		
+		System.out.println(intString);
 	}
 	
 	public static void heapify(int arr[], int n, int i)
@@ -99,21 +107,20 @@ public class HeapSort
 	 */
 	static void sink(int[] array, int start, int end, int index)
 	{
-		   int smallest = index;  // Initialize largest as root
-	        int l = 2*index + 1;  // left = 2*i + 1
-	        int r = 2*index + 2;  // right = 2*i + 2
+		   int smallest = start + index;  // Initialize largest as root
+	        int l = 2*index + 1 + start;  // left = 2*i + 1
+	        int r = 2*index + 2 + start;  // right = 2*i + 2
 	 
 	        // If left child is larger than root
-	        if (l < end && array[l] < array[smallest])
+	        if (l < end && array[l] > array[smallest])
 	            smallest = l;
 	 
 	        // If right child is larger than largest so far
-	        if (r < end && array[r] < array[smallest])
+	        if (r < end && array[r] > array[smallest])
 	            smallest = r;
 	 
 	        // If largest is not root
-	        if (smallest != index)
-	        {
+	        if (smallest != index) {
 	            int swap = array[index];
 	            array[index] = array[smallest];
 	            array[smallest] = swap;
