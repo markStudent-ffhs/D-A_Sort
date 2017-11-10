@@ -12,7 +12,7 @@ public class QuickSort
 	 */
 	public static void sort(int[] array)
 	{
-		if (array == null || array.length == 0){
+		if (array == null || array.length == 0 || array.length == 1){
             return;
         }
 		sort(array, 0, array.length -1);
@@ -52,7 +52,7 @@ public class QuickSort
 	 */
 	public static void sortPlus(int[] array)
 	{
-		if (array == null || array.length == 0){
+		if (array == null || array.length == 0 || array.length == 1){
             return;
         }
 		sortPlus(array, 0, array.length -1);
@@ -91,7 +91,7 @@ public class QuickSort
 	{
 		int i = start;
 		int j = end;
-		
+	
 		while (i <= j) {
             while (array[i] < array[piv])
                   i++;
@@ -132,6 +132,7 @@ public class QuickSort
 	 */
 	static int findPivot(int[] array, int start, int end)
 	{
-		return ThreadLocalRandom.current().nextInt(start, end + 1);
+		return end - 1;
+		//return ThreadLocalRandom.current().nextInt(start, end);
 	}
 }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class HeapSort 
 {
-	private static boolean DEBUG = true;
+	private static boolean DEBUG = false;
 	
 	/**
 	 * Sortiert ein Array mit Heapsort.
@@ -113,7 +113,8 @@ public class HeapSort
 	 */
 	public static void removeHeapRoot(int[] array, int start, int end)
 	{
-		// TODO	(Implementieren Sie diese Methode, wenn Sie sie für die Sort-Methoden brauchen.		
+		swap(array, start, end);
+		makeHeap(array, start, end -1);
 	}
 	
 	/**

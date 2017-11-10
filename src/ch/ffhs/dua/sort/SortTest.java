@@ -51,51 +51,51 @@ public class SortTest
 	}
 
 	
-//	
-//	@Test
-//	public void testInsertSort()
-//	{
-//		testSort(InsertSort::sort);
-//	}
-//	
-//	@Test
-//	public void testQuickSort()
-//	{
-//		testSort(QuickSort::sort);
-//	}
-//	
-//	@Test
-//	public void testQuickSortPlus()
-//	{
-//		int oldThr = QuickSort.THRESHOLD;
-//		try
-//		{
-//			QuickSort.THRESHOLD = 5;
-//			testSort(QuickSort::sortPlus);
-//		}
-//		finally
-//		{
-//			QuickSort.THRESHOLD = oldThr;
-//		}
-//	}
+	
+	@Test
+	public void testInsertSort()
+	{
+		testSort(InsertSort::sort);
+	}
+	
+	@Test
+	public void testQuickSort()
+	{
+		testSort(QuickSort::sort);
+	}
+	
+	@Test
+	public void testQuickSortPlus()
+	{
+		int oldThr = QuickSort.THRESHOLD;
+		try
+		{
+			QuickSort.THRESHOLD = 5;
+			testSort(QuickSort::sortPlus);
+		}
+		finally
+		{
+			QuickSort.THRESHOLD = oldThr;
+		}
+	}
 	
 	/**
 	 * Tests für log2 Methode
 	 */
-//	@Test
-//	public void testLog2()
-//	{
-//		assertSame(0, IntroSort.log2(1));
-//		assertSame(1, IntroSort.log2(2));
-//		assertSame(1, IntroSort.log2(3));
-//		assertSame(2, IntroSort.log2(4));
-//		assertSame(2, IntroSort.log2(5));
-//		assertSame(2, IntroSort.log2(7));
-//		assertSame(3, IntroSort.log2(8));
-//		assertSame(3, IntroSort.log2(9));
-//		assertSame(0, IntroSort.log2(0));
-//	}
-////	
+	@Test
+	public void testLog2()
+	{
+		assertSame(0, IntroSort.log2(1));
+		assertSame(1, IntroSort.log2(2));
+		assertSame(1, IntroSort.log2(3));
+		assertSame(2, IntroSort.log2(4));
+		assertSame(2, IntroSort.log2(5));
+		assertSame(2, IntroSort.log2(7));
+		assertSame(3, IntroSort.log2(8));
+		assertSame(3, IntroSort.log2(9));
+		assertSame(0, IntroSort.log2(0));
+	}
+	
 	/**
 	 * Test makeHeap Methode
 	 */
@@ -162,43 +162,43 @@ public class SortTest
 		}
 		return true;
 	}
-//	
-//	@Test
-//	public void testRemoveHeapRoot()
-//	{
-//		for (int[] array : arrays)
-//		{
-//			if (array.length == 0) continue;
-//			int[] arrayClone = array.clone();
-//			Arrays.sort(arrayClone);
-//			HeapSort.makeHeap(array, 0, array.length - 1);
-//			assertTrue(isHeap(array));
-//			HeapSort.removeHeapRoot(array, 0, array.length - 1);
-//			assertTrue(isHeap(array, 0, array.length -2));
-//			Arrays.sort(array);
-//			assertSame(arrayClone[array.length - 1], array[array.length - 1]);
-//			assertArrayEquals(array, arrayClone);
-//		}
-//		
-//		int[] array;
-//		int[] arrayClone;
-//		array = new int[] {8,7,6,5,4,4,3,3,2,1};
-//		arrayClone = array.clone();
-//		assertTrue(isHeap(array));
-//		HeapSort.removeHeapRoot(array, 0, array.length - 1);
-//		assertTrue(isHeap(array, 0, array.length -2));
-//		assertSame(arrayClone[0], array[array.length - 1]);
-//		Arrays.sort(array);
-//		Arrays.sort(arrayClone);
-//		assertArrayEquals(array, arrayClone);
-//	}
-//
+	
+	@Test
+	public void testRemoveHeapRoot()
+	{
+		for (int[] array : arrays)
+		{
+			if (array.length == 0) continue;
+			int[] arrayClone = array.clone();
+			Arrays.sort(arrayClone);
+			HeapSort.makeHeap(array, 0, array.length - 1);
+			assertTrue(isHeap(array));
+			HeapSort.removeHeapRoot(array, 0, array.length - 1);
+			assertTrue(isHeap(array, 0, array.length -2));
+			Arrays.sort(array);
+			assertSame(arrayClone[array.length - 1], array[array.length - 1]);
+			assertArrayEquals(array, arrayClone);
+		}
+		
+		int[] array;
+		int[] arrayClone;
+		array = new int[] {8,7,6,5,4,4,3,3,2,1};
+		arrayClone = array.clone();
+		assertTrue(isHeap(array));
+		HeapSort.removeHeapRoot(array, 0, array.length - 1);
+		assertTrue(isHeap(array, 0, array.length -2));
+		assertSame(arrayClone[0], array[array.length - 1]);
+		Arrays.sort(array);
+		Arrays.sort(arrayClone);
+		assertArrayEquals(array, arrayClone);
+	}
+
 	@Test
 	public void testHeapSort()
 	{
 		testSort(HeapSort::sort);
 	}
-//
+
 //	@Test
 //	public void testIntroSort()
 //	{

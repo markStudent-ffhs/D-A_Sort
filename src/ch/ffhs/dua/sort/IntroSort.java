@@ -12,6 +12,9 @@ public class IntroSort
 	 */
 	public static void sort(int[] array)
 	{
+		if (array == null || array.length == 0 || array.length == 1){
+            return;
+        }
 		int l = array.length;
 		sort(array, 0, l - 1, 2 * l * log2(l));
 	}
@@ -25,12 +28,16 @@ public class IntroSort
 	 */
 	public static void sort(int[] array, int start, int end, int maxDepth)
 	{
+	
 		if (start >= end) return;
+		
 		if (maxDepth < 0)
 		{
 			HeapSort.sort(array, start, end);
 		}
 		int pivot = QuickSort.findPivot(array, start, end);
+		//int pivot = end -1;
+		System.out.println(pivot);
 		pivot = partition(array, start, end, pivot);
 		sort(array, start, pivot - 1, maxDepth - 1);
 		sort(array, pivot + 1, end, maxDepth - 1);
