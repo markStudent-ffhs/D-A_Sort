@@ -1,9 +1,11 @@
 package ch.ffhs.dua.sort;
 
+import java.util.Arrays;
+
 public class HeapSort 
 {
+	private static boolean DEBUG = true;
 	
-	private static int LENGTH;
 	/**
 	 * Sortiert ein Array mit Heapsort.
 	 * @param array
@@ -21,12 +23,25 @@ public class HeapSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		makeHeap(array, start ,end);        
-        for (int i = LENGTH; i > 0; i--)
-        {
-            swap(array,0, i);
-            LENGTH = LENGTH - 1;
-            sink(array, start, end, 0);
+		if(null == array || array.length == 0 || array.length == 1)
+			return;
+		
+        if(DEBUG) System.out.println("######## Make Heap:");
+		makeHeap(array, start ,end);
+		if(DEBUG) System.out.println("######## Heap Done");
+		int n = end - start;
+		if(DEBUG) System.out.println("######## Start sort:");
+        for (int i = n; i >= 0; i--) {
+            swap(array, 0, i);
+            sink(array, start, i, 0);
+        }
+        
+        if(DEBUG) {
+	        System.out.println("Sorted Array:");
+			System.out.println(Arrays.toString(array));
+			System.out.println("######## Sort done");
+			System.out.println("");
+			System.out.println("");
         }
 	}
 	
@@ -41,61 +56,16 @@ public class HeapSort
 	public static void makeHeap(int[] array, int start, int end)
 	{
 		int n = end - start + 1;
-		System.out.println("länge "+ n);
-		System.out.println("start "+ start);
-		System.out.println("end "+ end);
 		for (int i = n / 2 - 1; i >= 0; i--) {
-			System.out.println("index "+ i);
-            sink(array, start, n, i);
+            sink(array, start, end + 1, i);
 		}
-            
-		String intString = "";
-		for (int i = 0; i < array.length; i++) {
-        	intString += " " + array[i];
-        }
 		
-		System.out.println(intString);
+		if(DEBUG) {
+			System.out.println("Heap is:");
+			System.out.println(Arrays.toString(array));
+		}
 	}
-	
-	public static void makeHeap2(int array[], int start, int end) {
-		int n = array.length;
-		for (int i = n / 2 - 1; i >= 0; i--)
-            heapify(array, n, i);
-		
-		String intString = "";
-		for (int i = 0; i < array.length; i++) {
-        	//System.out.println(array[i]);
-        	intString += " " + array[i];
-        }
-		
-		System.out.println(intString);
-	}
-	
-	public static void heapify(int arr[], int n, int i)
-    {
-        int smallest = i;  // Initialize largest as root
-        int l = 2*i + 1;  // left = 2*i + 1
-        int r = 2*i + 2;  // right = 2*i + 2
- 
-        // If left child is larger than root
-        if (l < n && arr[l] < arr[smallest])
-            smallest = l;
- 
-        // If right child is larger than largest so far
-        if (r < n && arr[r] < arr[smallest])
-            smallest = r;
- 
-        // If largest is not root
-        if (smallest != i)
-        {
-            int swap = arr[i];
-            arr[i] = arr[smallest];
-            arr[smallest] = swap;
- 
-            // Recursively heapify the affected sub-tree
-            heapify(arr, n, smallest);
-        }
-    }
+
 	
 	/**
 	 * Hilfsmethode für Heapsort:
@@ -111,27 +81,24 @@ public class HeapSort
 	 */
 	static void sink(int[] array, int start, int end, int index)
 	{
-		    int smallest = start + index;  // Initialize largest as root
-	        int l = 2 * index + 1 + start;  // left = 2*i + 1
-	        int r = 2 * index + 2 + start;  // right = 2*i + 2
-	        System.out.println("small " + smallest);
+		    int largest = index; 
+	        int left = 2 * index + 1;
+	        int right = 2 * index + 2;
 	 
 	        // If left child is larger than root
-	        if (l < end && array[l] > array[smallest])
-	            smallest = l;
+	        if (start + left < end && array[start + left] > array[start + largest]) {
+	        	largest = left;
+	        }
 	 
 	        // If right child is larger than largest so far
-	        if (r < end && array[r] > array[smallest])
-	            smallest = r;
-	 
+	        if (start + right < end && array[start + right] > array[start + largest]) {
+	            largest = right;
+	        }
+
 	        // If largest is not root
-	        if (smallest != index) {
-	            int swap = array[index];
-	            array[index] = array[smallest];
-	            array[smallest] = swap;
-	 
-	            // Recursively heapify the affected sub-tree
-	            sink(array, start, end, smallest);
+	        if (largest != index && start + largest <= end) {
+	            swap(array, start + index, start + largest);
+	            sink(array, start, end, largest);
 	        }
 	    }
 	
@@ -185,5 +152,5 @@ public class HeapSort
 		array[a] = array[b];
 		array[b] = tmp;
 	}
-
+	
 }
