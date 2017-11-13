@@ -51,7 +51,6 @@ public class SortTest
 	}
 
 	
-	
 	@Test
 	public void testInsertSort()
 	{
@@ -199,10 +198,10 @@ public class SortTest
 		testSort(HeapSort::sort);
 	}
 
-//	@Test
-//	public void testIntroSort()
-//	{
-//		testSort(IntroSort::sort);
-//	}
+	@Test
+	public void testIntroSort()
+	{
+		testSort(IntroSort::sort);
+	}
 
 }

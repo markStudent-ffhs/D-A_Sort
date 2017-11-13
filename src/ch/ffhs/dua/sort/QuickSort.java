@@ -132,7 +132,6 @@ public class QuickSort
 	 */
 	static int findPivot(int[] array, int start, int end)
 	{
-		return end - 1;
-		//return ThreadLocalRandom.current().nextInt(start, end);
+		return  (start  + end ) >>> 1;
 	}
 }
