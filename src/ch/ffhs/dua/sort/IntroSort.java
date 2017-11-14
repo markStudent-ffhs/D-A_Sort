@@ -33,7 +33,7 @@ public class IntroSort
 		}
 		
 		int p = partition(array, start, end, QuickSort.findPivot(array, start, end));
-		sort(array, start, p - 1, maxDepth - 1);
+		sort(array, start, p, maxDepth - 1);
 		sort(array, p + 1, end, maxDepth - 1);
 	}
 	

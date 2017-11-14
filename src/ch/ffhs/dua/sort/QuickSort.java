@@ -1,8 +1,5 @@
 package ch.ffhs.dua.sort;
 
-import java.util.concurrent.ThreadLocalRandom;
-import ch.ffhs.dua.sort.InsertSort;
-
 public class QuickSort 
 {
 	
@@ -26,12 +23,10 @@ public class QuickSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		int i = partition(array, start, end, findPivot(array, start, end));
-		if(start < i) {
-			sort(array, start, i);
-		}
-		if(i < end) {
-			sort(array, i, end);
+		if (start < end) {
+			int q = partition(array, start, end, findPivot(array, start, end));
+			sort(array, start, q);
+			sort(array, q + 1, end);
 		}
 	}
 	
@@ -88,20 +83,23 @@ public class QuickSort
 	 */
 	static int partition(int[] array, int start, int end, int piv)
 	{
-		int i = start;
-		int j = end;
-	
-		while (i <= j) {
-            while (array[i] < array[piv])
-                  i++;
-            while (array[j] > array[piv])
-                  j--;
-            if (i <= j) {
-                  swap(array, i, j);
-            }
-		}
-		
-		return j;
+		int x = array[piv];
+        int i = start-1 ;
+        int j = end+1 ;
+
+        while (true) {
+            i++;
+            while ( i < end && array[i] < x)
+                i++;
+            j--;
+            while (j > start && array[j] > x)
+                j--;
+
+            if (i < j)
+                swap(array, i, j);
+            else
+                return j;
+        }
 	}
 	
 	/**
