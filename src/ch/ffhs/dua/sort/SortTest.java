@@ -30,6 +30,8 @@ public class SortTest
 		arrays.add(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10});
 		arrays.add(new int[] {10, 9, 8, 7, 6, 5, 4, 3, 2, 1});
 		arrays.add(new int[] {10, 3, 5, 3, 6, 3, 2, 8, 7, 2, 2});
+		arrays.add(new int[] {6, 5, 3, 1, 8, 7, 2, 4});
+		
 		arrays.add(new int[10]);
 	}
 	

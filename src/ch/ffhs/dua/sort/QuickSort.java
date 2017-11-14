@@ -26,16 +26,15 @@ public class QuickSort
 	 */
 	public static void sort(int[] array, int start, int end)
 	{
-		
 		int i = partition(array, start, end, findPivot(array, start, end));
-		if(start < i - 1) {
-			sort(array, start, i -1);
+		if(start < i) {
+			sort(array, start, i);
 		}
 		if(i < end) {
 			sort(array, i, end);
 		}
-		
 	}
+	
 	
 	/** 
 	 * Schwellwert, bei welcher Arraygrösse in der Rekursion InsertSort 
@@ -99,13 +98,10 @@ public class QuickSort
                   j--;
             if (i <= j) {
                   swap(array, i, j);
-                  i++;
-                  j--;
             }
-           
 		}
 		
-		return i;
+		return j;
 	}
 	
 	/**

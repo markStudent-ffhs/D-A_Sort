@@ -15,8 +15,6 @@ public class IntroSort
 		
 		int l = array.length;
 		sort(array, 0, l - 1, 2 * l * log2(l));
-		QuickSort.sort(array);
-		
 	}
 	
 	/**
@@ -33,10 +31,10 @@ public class IntroSort
 		{
 			HeapSort.sort(array, start, end);
 		}
-		int pivot = QuickSort.findPivot(array, start, end);
-		pivot = partition(array, start, end, pivot);
-		sort(array, start, pivot - 1, maxDepth - 1);
-		sort(array, pivot + 1, end, maxDepth - 1);
+		
+		int p = partition(array, start, end, QuickSort.findPivot(array, start, end));
+		sort(array, start, p - 1, maxDepth - 1);
+		sort(array, p + 1, end, maxDepth - 1);
 	}
 	
 
